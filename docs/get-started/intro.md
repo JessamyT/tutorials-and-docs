@@ -57,7 +57,7 @@ By using existing software {{< glossary_tooltip term_id="service" text="services
 
 Viam's APIs are standardized across all hardware of a given type, so for example, if you write code to use motion planning with one robot arm and then switch to a different brand and model of arm, you do not need to edit your code.
 
-Viam's modular resource registry provides a framework for adding and sharing modules seamlessly, all using the standard APIs.
+Viam's modular resource [registry](/registry/) provides a framework for adding and sharing modules seamlessly, all using the standard APIs.
 
 ### Cloud connectivity
 
@@ -65,6 +65,8 @@ Viam is designed to work whether your machine is connected to the internet conti
 For more information on how Viam stores and syncs data, see [Data Management](/data/).
 
 ## How does it work?
+
+{{< imgproc src="/viam/board-viam-server.png" alt="A diagram of a single-board computer running viam-server." resize="270x" class="alignright" style="max-width:270px" >}}
 
 At the core of Viam is the open-source `viam-server` executable which runs on your computer, IoT device, or robot.
 `viam-server`:
@@ -95,9 +97,34 @@ You can install `viam-server` on your personal computer, or on a single-board co
 
 ### Step 2: Configure
 
-Select the Viam {{< glossary_tooltip term_id="resource" text="resources" >}} you want to use and integrate them by [configuring your smart machine](/build/configure/).
+Machines can be small and simple or very complex.
+A machine can be a single-board computer with a single sensor or LED wired to it, or a machine can consist of multiple computers with many physical components connected, acting as one unit.
+
+The term {{% glossary_tooltip term_id="component" text="_component_" %}} describes a piece of hardware that a computer controls, like an arm or a motor.
+
+For each component that makes up your machine:
+
+<p>
+{{< imgproc src="/viam/test_components.png" alt="Multiple components being tested in the Viam app." resize="320x" style="max-width:320px" class="alignright" >}}
+</p>
+
+1. Add it to your machine by [choosing the component type](/build/configure/#components) (example: `camera`) and model (example: `webcam`).
+2. Test it with the visual [control tab](/fleet/control/).
+3. See any problems with in-app [logs](/cloud/machines/#logs), review or roll back [configuration history](/cloud/machines/#configure).
 
 If a component or service you want to use for your project is not natively supported, see whether it is supported as a {{< glossary_tooltip term_id="modular-resource" text="modular resource" >}} in the [registry](/registry/) or build your own modular resource.
+
+After configuring your machine's hardware, you can configure [high level functionality](/services/) the same way:
+
+- **Data Management** enables you to capture and sync data from one or more machines, and use that data for machine learning and beyond.
+- **Fleet management** enables you to configure, control, debug, and manage entire fleets of machines.
+- **Motion planning** enables your machine to plan and move itself.
+- **Vision** enables your machine to intelligently see and interpret the world around it.
+- **Simultaneous Localization And Mapping (SLAM)** enables your machine to map its surroundings and find its position on a map.
+
+<div>
+{{< imgproc src="/viam/machine-components.png" alt="Machine components" resize="600x" class="aligncenter" >}}
+</div>
 
 ### Step 3: Program
 
